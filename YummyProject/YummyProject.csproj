@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\YummyContext.cs" />
+    <Compile Include="Controllers\AdminLayoutController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -147,8 +149,13 @@
     <Compile Include="Migrations\202412222121164_feature-validate-add.Designer.cs">
       <DependentUpon>202412222121164_feature-validate-add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412232119082_mig_admin_table.cs" />
+    <Compile Include="Migrations\202412232119082_mig_admin_table.Designer.cs">
+      <DependentUpon>202412232119082_mig_admin_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Chef.cs" />
@@ -200,6 +207,25 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Templates\sb-admin\401.html" />
+    <Content Include="Templates\sb-admin\404.html" />
+    <Content Include="Templates\sb-admin\500.html" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\datatables-demo.js" />
+    <Content Include="Templates\sb-admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Templates\sb-admin\charts.html" />
+    <Content Include="Templates\sb-admin\css\styles.css" />
+    <Content Include="Templates\sb-admin\index.html" />
+    <Content Include="Templates\sb-admin\js\datatables-simple-demo.js" />
+    <Content Include="Templates\sb-admin\js\scripts.js" />
+    <Content Include="Templates\sb-admin\layout-sidenav-light.html" />
+    <Content Include="Templates\sb-admin\layout-static.html" />
+    <Content Include="Templates\sb-admin\login.html" />
+    <Content Include="Templates\sb-admin\password.html" />
+    <Content Include="Templates\sb-admin\register.html" />
+    <Content Include="Templates\sb-admin\tables.html" />
     <Content Include="Templates\yummy-red-1.0.0\assets\css\main.css" />
     <Content Include="Templates\yummy-red-1.0.0\assets\img\about-2.jpg" />
     <Content Include="Templates\yummy-red-1.0.0\assets\img\about.jpg" />
@@ -332,6 +358,9 @@
     <Content Include="Views\Default\DefaultAbout.cshtml" />
     <Content Include="Views\Feature\Index.cshtml" />
     <Content Include="Views\Feature\AddFeature.cshtml" />
+    <Content Include="Views\AdminLayout\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Default\DefaultProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412222121164_feature-validate-add.resx">
       <DependentUpon>202412222121164_feature-validate-add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412232119082_mig_admin_table.resx">
+      <DependentUpon>202412232119082_mig_admin_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
