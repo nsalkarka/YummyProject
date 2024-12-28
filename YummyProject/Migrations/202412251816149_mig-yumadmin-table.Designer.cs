@@ -7,13 +7,13 @@ namespace YummyProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class mig_admin_table : IMigrationMetadata
+    public sealed partial class migyumadmintable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mig_admin_table));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migyumadmintable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202412232119082_mig_admin_table"; }
+            get { return "202412251816149_mig-yumadmin-table"; }
         }
         
         string IMigrationMetadata.Source
