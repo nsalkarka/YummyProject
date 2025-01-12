@@ -1,19 +1,23 @@
-﻿@model YummyProject.Models.Testimonial
+﻿@model YummyProject.Models.Event
+
 @{
-    ViewBag.Title = "UpdateTestimonial";
+    ViewBag.Title = "UpdateEvent";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Referans Güncelleme Sayfası</h2>
+
+
+<h2>Etkinlik Güncelleme Sayfası</h2>
 
 <form method="post" enctype="multipart/form-data">
-    @Html.HiddenFor(x => x.TestimonialId)
 
-   
+    @Html.HiddenFor(x => x.EventId)
+
+
     <div class="row align-items-center">
         <br /><br />
         <div class="col-md-9 ">
-            <label>Resmi Yükleyin</label>
+            <label>Etkinlik Resmi Yükleyin</label>
             <input type="file" name="ImageFile" class="form-control" value="@Model.ImageUrl" />
         </div>
         <div class="col-md-3">
@@ -22,30 +26,24 @@
             <img src="@Model.ImageUrl" alt="Profil Resmi" style="width:175px;height:200px;">
         </div>
     </div>
-   
-
-    
 
 
 
-    <label>Ad Soyad</label>
-    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.NameSurname)</div>
-
-    <br />
-    <label>Ünvan</label>
+    <label>Etkinlik Adı</label>
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
     <div class="text-danger">@Html.ValidationMessageFor(x => x.Title)</div>
 
     <br />
-    <label>Yıldız</label>
-    @Html.TextBoxFor(x => x.Rating, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.Rating)</div>
+    <label>Açıklaması</label>
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Description)</div>
 
     <br />
-    <label>Yorum</label>
-    @Html.TextBoxFor(x => x.Comment, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.Comment)</div>
+    <label>Ücreti</label>
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Price)</div>
+
+
 
     <br />
     <div class="text-danger">@ViewBag.error</div>
