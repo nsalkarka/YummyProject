@@ -8,8 +8,8 @@ namespace YummyProject.Models
     public class Service
     {
         public int ServiceId { get; set; }
-        public int Title { get; set; }
-        public int Description { get; set; }
-        public int Icon { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Icon { get; set; }
     }
 }

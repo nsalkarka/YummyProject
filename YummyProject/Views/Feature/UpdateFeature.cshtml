@@ -1,34 +1,38 @@
 ﻿@model YummyProject.Models.Feature
 @{
-    ViewBag.Title = "AddFeature";
+    ViewBag.Title = "UpdateFeature";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Yeni Öne Çıkan Alan Ekleme Sayfası</h2>
+<h2>Öne Çıkan Güncelleme Sayfası</h2>
 
 <form method="post" enctype="multipart/form-data">
-    
-    <label>Profil Resmi Yükleyin</label>
+    @Html.HiddenFor(x => x.FeatureId)
+
+
+    <label>Öne Çıkan Resmi Yükleyin</label>
     <input type="file" name="ImageFile" class="form-control" />
     <br />
 
-
-   
+     
+    <br />
     <label>Başlık</label>
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.Title)</div>
+
 
     <br />
     <label>Açıklama</label>
     @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.Description)</div>
+
 
     <br />
     <label>Video Url</label>
     @Html.TextBoxFor(x => x.VideoUrl, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.VideoUrl)</div>
+
 
     <br />
-    <div class="text-danger">@ViewBag.error</div>
+
     <button class="btn btn-primary">Kaydet</button>
 </form>
+
+

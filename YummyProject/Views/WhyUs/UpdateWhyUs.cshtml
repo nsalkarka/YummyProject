@@ -1,19 +1,16 @@
-﻿@model YummyProject.Models.Feature
+﻿@model YummyProject.Models.Service
 @{
-    ViewBag.Title = "AddFeature";
+    ViewBag.Title = "UpdateWhyUs";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Yeni Öne Çıkan Alan Ekleme Sayfası</h2>
+<h2>Yeni Servis Güncelleme Sayfası</h2>
 
-<form method="post" enctype="multipart/form-data">
-    
-    <label>Profil Resmi Yükleyin</label>
-    <input type="file" name="ImageFile" class="form-control" />
-    <br />
+<form method="post">
 
 
-   
+    @Html.HiddenFor(x=>x.ServiceId)
+
     <label>Başlık</label>
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
     <div class="text-danger">@Html.ValidationMessageFor(x => x.Title)</div>
@@ -24,11 +21,14 @@
     <div class="text-danger">@Html.ValidationMessageFor(x => x.Description)</div>
 
     <br />
-    <label>Video Url</label>
-    @Html.TextBoxFor(x => x.VideoUrl, new { @class = "form-control" })
-    <div class="text-danger">@Html.ValidationMessageFor(x => x.VideoUrl)</div>
+    <label>İkon</label>
+    @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Icon)</div>
 
     <br />
     <div class="text-danger">@ViewBag.error</div>
     <button class="btn btn-primary">Kaydet</button>
 </form>
+
+
+

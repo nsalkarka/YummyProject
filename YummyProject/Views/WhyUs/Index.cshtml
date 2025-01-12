@@ -1,18 +1,18 @@
-﻿@model List<YummyProject.Models.Feature>
+﻿@model List<YummyProject.Models.Service>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Öne Çıkan Alan</h2>
+<h2>Neden Biz (Hizmetler) Alanı</h2>
 
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>#</th>
-            <th>Resim</th>
             <th>Başlık</th>
             <th>Açıklama</th>
+            <th>İkon</th>
             <th>Sil</th>
             <th>Güncelle</th>
         </tr>
@@ -21,12 +21,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <th>@item.FeatureId</th>
-                <td><img src="@item.ImageUrl" style="width:50px;height:50px" /> </td>
+                <th>@item.ServiceId</th>
                 <td>@item.Title</td>
                 <td>@item.Description</td>
-                <td><a href="/Feature/DeleteFeature/@item.FeatureId" class="btn btn-danger">Sil</a></td>
-                <td><a href="/Feature/UpdateFeature/@item.FeatureId" class="btn btn-info">Güncelle</a></td>
+                <td>@item.Icon</td>
+                <td><a href="/WhyUs/DeleteWhyUs/@item.ServiceId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/WhyUs/UpdateWhyUs/@item.ServiceId" class="btn btn-info">Güncelle</a></td>
             </tr>
 
 
@@ -34,5 +34,5 @@
     </tbody>
 </table>
 <br />
-<a href="/Feature/AddFeature/" class="btn btn-primary">Yeni Öne Çıkan Ekle</a>
+<a href="/WhyUs/AddWhyUs/" class="btn btn-primary">Hizmetlere Ekle</a>
 

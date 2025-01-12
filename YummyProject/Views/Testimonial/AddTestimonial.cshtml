@@ -1,0 +1,39 @@
+﻿@model YummyProject.Models.Testimonial
+@{
+    ViewBag.Title = "AddTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Yeni Referans Ekleme Sayfası</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <label>Profil Resmi Yükleyin</label>
+    <input type="file" name="ImageFile" class="form-control" />
+    <br />
+
+
+
+    <label>Ad Soyad</label>
+    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.NameSurname)</div>
+
+    <br />
+    <label>Ünvan</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Title)</div>
+
+    <br />
+    <label>Yıldız</label>
+    @Html.TextBoxFor(x => x.Rating, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Rating)</div>
+
+    <br />
+    <label>Yorum</label>
+    @Html.TextBoxFor(x => x.Comment, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Comment)</div>
+
+    <br />
+    <div class="text-danger">@ViewBag.error</div>
+    <button class="btn btn-primary">Kaydet</button>
+</form>
