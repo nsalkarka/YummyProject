@@ -1,0 +1,87 @@
+﻿@model YummyProject.Models.Chef
+
+@{
+    ViewBag.Title = "AddChef";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Yeni Şef Ekle</h2>
+
+<form method="post" action="/Chef/AddChef">
+    <div class="form-group">
+        <label for="Name">Adı Soyadı:</label>
+        <input type="text" class="form-control" id="Name" name="Chef.Name" required>
+    </div>
+    <div class="form-group">
+        <label for="Title">Ünvanı:</label>
+        <input type="text" class="form-control" id="Title" name="Chef.Title" required>
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">Resim URL:</label>
+        <input type="text" class="form-control" id="ImageUrl" name="Chef.ImageUrl" required>
+    </div>
+    <div class="form-group">
+        <label for="Description">Açıklama:</label>
+        <textarea class="form-control" id="Description" name="Chef.Description"></textarea>
+    </div>
+
+    <h3>Sosyal Medya Hesapları</h3>
+    <div id="social-media-fields">
+        <div class="social-media-field">
+            <div class="form-group">
+                <label for="Chef.ChefSocials[0].Url">URL:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[0].Url">
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[0].Icon">Icon:</label>
+                <select class="form-control" name="Chef.ChefSocials[0].Icon">
+                    <option value="facebook-icon">Facebook</option>
+                    <option value="twitter-icon">Twitter</option>
+                    <option value="instagram-icon">Instagram</option>
+                    <option value="linkedin-icon">LinkedIn</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[0].SocialMediaName">Sosyal Medya Adı:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[0].SocialMediaName">
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary" onclick="addSocialMediaField()">Sosyal Medya Hesabı Ekle</button>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+
+<script>
+    function addSocialMediaField() {
+        var container = document.getElementById("social-media-fields");
+        var count = container.querySelectorAll(".social-media-field").length;
+        var newField = document.createElement("div");
+        newField.classList.add("social-media-field");
+
+        let iconOptions = `
+            <option value="facebook-icon">Facebook</option>
+            <option value="twitter-icon">Twitter</option>
+            <option value="instagram-icon">Instagram</option>
+            <option value="linkedin-icon">LinkedIn</option>
+        `;
+
+        newField.innerHTML = `
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].Url">URL:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[${count}].Url">
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].Icon">Icon:</label>
+                <select class="form-control" name="Chef.ChefSocials[${count}].Icon">
+                    ${iconOptions}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].SocialMediaName">Sosyal Medya Adı:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[${count}].SocialMediaName">
+            </div>
+        `;
+        container.appendChild(newField);
+    }
+</script>

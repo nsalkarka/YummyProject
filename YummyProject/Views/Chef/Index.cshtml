@@ -1,0 +1,54 @@
+﻿@model List<YummyProject.Models.Chef>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var count = 0;
+}
+
+<h2>Şef Alanı</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Resim</th>
+            <th>Adı Soyadı</th>
+            <th>Ünvanı</th>
+            <th>Açıklama</th>
+            <th>Sosyal Medya URL</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+
+            <tr>
+                <th>@count</th>
+                <td><img src="@item.ImageUrl" style="width:50px;height:50px" /> </td>
+                <td>@item.Name</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>
+                    @foreach (var social in item.ChefSocials)
+                    {
+                        <p>@social.SocialMediaName</p>
+                        <p>@social.Url</p>
+                        
+
+
+
+
+                    }
+                </td>
+                <td><a href="/Chef/DeleteChef/@item.ChefId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Chef/UpdateChef/@item.ChefId" class="btn btn-info">Güncelle</a></td>
+            </tr>
+    }
+    </tbody>
+</table>
+<br />
+<a href="/Chef/AddChef/" class="btn btn-primary">Yeni Şef Ekle</a>
+

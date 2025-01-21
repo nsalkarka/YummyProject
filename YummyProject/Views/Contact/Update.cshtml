@@ -1,0 +1,49 @@
+﻿﻿@model YummyProject.Models.ContactInfo
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>İletişim Bilgilerini Güncelle</h2>
+
+<form method="post">
+    @Html.HiddenFor(x => x.ContactInfoId)
+
+    <label>Adress </label>
+    @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+    <p class="text-danger">
+        @Html.ValidationMessageFor(x => x.Address)
+    </p>
+    <br />
+
+    <label> Email</label>
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <p class="text-danger">
+        @Html.ValidationMessageFor(x => x.Email)
+    </p>
+    <br />
+
+    <label> Phone Number</label>
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+    <p class="text-danger">
+        @Html.ValidationMessageFor(x => x.PhoneNumber)
+    </p>
+    <br />
+
+    <label> Map Url</label>
+    @Html.TextAreaFor(x => x.MapUrl, new { @class = "form-control" })
+    <p class="text-danger">
+        @Html.ValidationMessageFor(x => x.MapUrl)
+    </p>
+    <br />
+
+    <label> Open Hours</label>
+    @Html.TextAreaFor(x => x.OpenHours, new { @class = "form-control" })
+    <p class="text-danger">
+        @Html.ValidationMessageFor(x => x.OpenHours)
+    </p>
+    <br />
+
+    <button class="btn btn-outline-success">Submit </button>
+
+</form>

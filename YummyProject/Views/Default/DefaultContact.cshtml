@@ -5,14 +5,15 @@
 
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+        <h2>İletişim</h2>
+        <p><span>Bizimle</span> <span class="description-title">İletişime Geç</span></p>
     </div><!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
+        @foreach(var item in Model) {
 
         <div class="mb-5">
-            <iframe style="width: 100%; height: 400px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen=""></iframe>
+            <iframe style="width: 100%; height: 400px;" src="@item.MapUrl" frameborder="0" allowfullscreen=""></iframe>
         </div><!-- End Google Maps -->
 
         <div class="row gy-4">
@@ -21,8 +22,8 @@
                 <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
                     <i class="icon bi bi-geo-alt flex-shrink-0"></i>
                     <div>
-                        <h3>Address</h3>
-                        <p>A108 Adam Street, New York, NY 535022</p>
+                        <h3>Adres</h3>
+                        <p>@item.Address</p>
                     </div>
                 </div>
             </div><!-- End Info Item -->
@@ -31,8 +32,8 @@
                 <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
                     <i class="icon bi bi-telephone flex-shrink-0"></i>
                     <div>
-                        <h3>Call Us</h3>
-                        <p>+1 5589 55488 55</p>
+                        <h3>Telefon</h3>
+                        <p>@item.PhoneNumber</p>
                     </div>
                 </div>
             </div><!-- End Info Item -->
@@ -41,8 +42,8 @@
                 <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
                     <i class="icon bi bi-envelope flex-shrink-0"></i>
                     <div>
-                        <h3>Email Us</h3>
-                        <p>info@example.com</p>
+                        <h3>Email</h3>
+                        <p>@item.Email</p>
                     </div>
                 </div>
             </div><!-- End Info Item -->
@@ -51,39 +52,40 @@
                 <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
                     <i class="icon bi bi-clock flex-shrink-0"></i>
                     <div>
-                        <h3>Opening Hours<br></h3>
-                        <p><strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong> Closed</p>
+                        <h3>Çalışma Saatleri<br></h3>
+                        <p>@item.OpenHours</p>
                     </div>
                 </div>
             </div><!-- End Info Item -->
 
         </div>
+        }
 
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
+        <form action="/Default/SendMessage/" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
             <div class="row gy-4">
 
                 <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                    <input type="text" name="Name" class="form-control" placeholder="İsminiz" required="">
                 </div>
 
                 <div class="col-md-6 ">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                    <input type="email" class="form-control" name="Email" placeholder="Email Adresiniz" required="">
                 </div>
 
                 <div class="col-md-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                    <input type="text" class="form-control" name="Subject" placeholder="Mesaj Konusu" required="">
                 </div>
 
                 <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                    <textarea class="form-control" name="MessageContent" rows="6" placeholder="Mesaj İçeriği" required=""></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
+                    <div class="loading">Gönderiliyor</div>
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                    <button type="submit">Send Message</button>
+                    <button type="submit">Mesaj Gönder</button>
                 </div>
 
             </div>

@@ -1,0 +1,86 @@
+﻿@model YummyProject.Models.Chef
+
+@{
+    ViewBag.Title = "EditChef";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Şefi Düzenle</h2>
+
+<form method="post" action="/Chef/UpdateChef">
+    @Html.HiddenFor(model => model.ChefId) <div class="form-group">
+        <label for="Name">Adı Soyadı:</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <label for="Title">Ünvanı:</label>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">Resim URL:</label>
+        @Html.TextBoxFor(model => model.ImageUrl, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <label for="Description">Açıklama:</label>
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+    </div>
+
+    <h3>Sosyal Medya Hesapları</h3>
+    <div id="social-media-fields">
+        @for (int i = 0; i < Model.ChefSocials.Count; i++)
+        {
+            <div class="social-media-field">
+                <div class="form-group">
+                    <label for="Chef.ChefSocials[@i].Url">URL:</label>
+                    @Html.TextBoxFor(model => model.ChefSocials[i].Url, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="Chef.ChefSocials[@i].Icon">Icon:</label>
+                    @Html.DropDownListFor(model => model.ChefSocials[i].Icon,
+                                          new SelectList(new[] { "facebook-icon", "twitter-icon", "instagram-icon", "linkedin-icon" }),
+                                          new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="Chef.ChefSocials[@i].SocialMediaName">Sosyal Medya Adı:</label>
+                    @Html.TextBoxFor(model => model.ChefSocials[i].SocialMediaName, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+
+<script>
+    function addSocialMediaField() {
+        var container = document.getElementById("social-media-fields");
+        var count = container.querySelectorAll(".social-media-field").length;
+        var newField = document.createElement("div");
+        newField.classList.add("social-media-field");
+
+        let iconOptions = `
+            <option value="facebook-icon">Facebook</option>
+            <option value="twitter-icon">Twitter</option>
+            <option value="instagram-icon">Instagram</option>
+            <option value="linkedin-icon">LinkedIn</option>
+        `;
+
+        newField.innerHTML = `
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].Url">URL:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[${count}].Url">
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].Icon">Icon:</label>
+                <select class="form-control" name="Chef.ChefSocials[${count}].Icon">
+                    ${iconOptions}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Chef.ChefSocials[${count}].SocialMediaName">Sosyal Medya Adı:</label>
+                <input type="text" class="form-control" name="Chef.ChefSocials[${count}].SocialMediaName">
+            </div>
+        `;
+        container.appendChild(newField);
+    }
+</script>

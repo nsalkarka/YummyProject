@@ -1,0 +1,42 @@
+﻿@model List<YummyProject.Models.Message>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var count = 0;
+}
+
+<h2>Mesajlar</h2>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Email</th>
+            <th>Konu</th>
+            <th>Mesaj İçeriği</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Subject</td>
+                <td>@item.MessageContent</td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

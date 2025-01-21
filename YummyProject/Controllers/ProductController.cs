@@ -11,7 +11,7 @@ namespace YummyProject.Controllers
 {
     public class ProductController : Controller
     {
-        YummyContext context=new YummyContext();
+        YummyContext context = new YummyContext();
 
         private void CategoryDropDown()
         {
@@ -32,7 +32,7 @@ namespace YummyProject.Controllers
         {
             var value = context.Products.ToList();
             return View(value);
-           
+
         }
 
         [HttpGet]
@@ -46,7 +46,7 @@ namespace YummyProject.Controllers
         public ActionResult AddProduct(Product product)
         {
 
-            
+
 
             if (product.ImageFile != null)
             {
@@ -74,6 +74,59 @@ namespace YummyProject.Controllers
             }
             return RedirectToAction("Index");
 
+        }
+
+        public ActionResult DeleteProduct(int id)
+        {
+            var value = context.Products.Find(id);
+            context.Products.Remove(value);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult UpdateProduct(int id) 
+        {
+            CategoryDropDown();
+            var value = context.Products.Find(id);
+            return View(value);
+        
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProduct (Product product)
+        {
+            if (product.ImageFile != null)
+            {
+                var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var saveLocation = Path.Combine(currentDirectory, "images", "product");
+                var fileName = Path.Combine(saveLocation, product.ImageFile.FileName);
+                product.ImageFile.SaveAs(fileName);
+                product.ImageUrl = "/images/product/" + product.ImageFile.FileName;
+
+
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            CategoryDropDown();
+            var value = context.Products.Find(product.ProductId);
+            value.ProductName= product.ProductName;
+            value.ImageUrl = product.ImageUrl;
+            value.Price = product.Price;
+            value.CategoryId = product.CategoryId;
+            value.Ingredients = product.Ingredients;
+
+            var result = context.SaveChanges();
+            if (result == 0)
+            {
+                ViewBag.error = "Değerler kaydedilirken bir hata ile karşılaşıldı";
+                return View(product);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

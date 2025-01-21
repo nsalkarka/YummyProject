@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YummyProject.Context;
+using YummyProject.Models;
 
 namespace YummyProject.Controllers
 {
@@ -43,7 +44,7 @@ namespace YummyProject.Controllers
             return PartialView();
         }
 
-        public PartialViewResult DefaultProduct() 
+        public PartialViewResult DefaultProduct() //tamam
         { 
             var values=context.Categories.ToList();
             return PartialView(values);
@@ -61,19 +62,19 @@ namespace YummyProject.Controllers
             return PartialView(values);
         }
 
-        public PartialViewResult DefaultChef()
+        public PartialViewResult DefaultChef() //tamam
         {
             var values = context.Chefs.ToList();
             return PartialView(values);
         }
 
-        public PartialViewResult DefaultBooking() 
+        public PartialViewResult DefaultBooking()  //tamam
         {
             var values=context.Bookings.ToList();
             return PartialView(values);
         }
             
-        public PartialViewResult DefaultGallery() 
+        public PartialViewResult DefaultGallery() //tamam
         {
             var values= context.PhotoGalleries.ToList();
             return PartialView(values);
@@ -84,6 +85,35 @@ namespace YummyProject.Controllers
             var values = context.ContactInfos.ToList();
             return PartialView(values);
         }
+
+        
+        [HttpPost]
+        public ActionResult AddBooking(Booking booking, string date, string time)
+        {
+
+            // Tarih ve saat birleştir
+            DateTime parsedDate = DateTime.Parse(date);
+            TimeSpan parsedTime = TimeSpan.Parse(time);
+            booking.BookingDate = parsedDate.Date + parsedTime;
+
+            booking.IsApproved = false;
+            context.Bookings.Add(booking);
+            context.SaveChanges();
+            return RedirectToAction("");
+
+
+        }
+
+        public ActionResult SendMessage(Message message)
+        { 
+            message.IsRead = false;
+            context.Messages.Add(message);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        
+        
+        }
+
 
     }
 }

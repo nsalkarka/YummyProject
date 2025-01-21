@@ -1,0 +1,43 @@
+﻿@model YummyProject.Models.Product
+
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Ürün Güncelleme Sayfası</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x=>x.ProductId)
+
+    <label>Ürün Resmi Yükleyin</label>
+    <input type="file" name="ImageFile" class="form-control" />
+    <br />
+
+
+
+    <label>Ürün Adı</label>
+    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.ProductName)</div>
+
+    <br />
+    <label>İçindekiler</label>
+    @Html.TextBoxFor(x => x.Ingredients, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Ingredients)</div>
+
+    <br />
+    <label>Ücreti</label>
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.Price)</div>
+
+    <br />
+    <label>Kategorisi</label>
+
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
+
+    <div class="text-danger">@Html.ValidationMessageFor(x => x.CategoryId)</div>
+
+    <br />
+    <div class="text-danger">@ViewBag.error</div>
+    <button class="btn btn-primary">Kaydet</button>
+</form>
