@@ -38,9 +38,9 @@ namespace YummyProject.Controllers
         public PartialViewResult DefaultStats() //tamam
         {
             ViewBag.soupCount = context.Products.Count(x => x.Category.CategoryName == "Çorbalar");
-            ViewBag.mostExpensive = context.Products.OrderByDescending(x => x.Price).Select(x => x.ProductName).FirstOrDefault();
+            ViewBag.mostExpensive = (int)context.Products.OrderByDescending(x => x.Price).Select(x => x.Price).FirstOrDefault();
             ViewBag.avgPrice = (int)context.Products.Average(x => x.Price);
-            ViewBag.cheapestPrice = context.Products.OrderBy(x => x.Price).Select(x => x.ProductName).FirstOrDefault();
+            ViewBag.cheapestPrice = (int)context.Products.OrderBy(x => x.Price).Select(x => x.Price).FirstOrDefault();
             return PartialView();
         }
 
